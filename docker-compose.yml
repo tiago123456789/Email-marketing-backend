@@ -1,0 +1,23 @@
+version: "2"
+services:
+  mongo:
+    image: "mongo"
+    volumes:
+      - ./data/db:/data/db
+    ports:
+      - "27017:27017"
+  app:
+    image: "node:8.6"
+    working_dir: "/home/app"
+    volumes:
+      - ".:/home/app/"
+      - "./node_modules/:/home/app/node_modules/"
+    ports: 
+      - 3000:3000
+    environment:
+      - PORT=3000
+      - URL_DB_CONNECTION=mongodb://mongo:27017/email_marketing
+    depends_on:
+      - mongo
+    command: npm run start:dev
+    
