@@ -7,7 +7,7 @@ class UserRepository extends Repository {
         super(userModel);
     }
 
-    async findByEmail(email) {
+    findByEmail(email) {
         return this.getModel().find({ "email": email });
     }
 }

@@ -2,6 +2,7 @@ const UserRepository = require("../repository/UserRepository");
 const LogicNegotiation = require("../exception/LogicNegotiationException");
 const SecurityException = require("../exception/SecurityException");
 const Token = require("../lib/Token");
+const bcrypt = require("bcryptjs");
 
 class UserService {
 
@@ -15,7 +16,8 @@ class UserService {
             throw new SecurityException(null, "Datas invalid!");
         }
 
-        const user = await this._repository.findByEmail(credentails.email);
+        let user = await this._repository.findByEmail(credentails.email);
+        user = user[0];
         const isPaswordValid = await bcrypt.compare(credentails.password, user.password);
 
         if (!isPaswordValid) {
