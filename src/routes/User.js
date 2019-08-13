@@ -7,6 +7,7 @@ const router = express.Router();
 module.exports = () => {
 
     router.post("/", userEndpoint.create);
+    router.get("/me", userEndpoint.me);
     
     return router;
 }

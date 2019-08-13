@@ -11,13 +11,21 @@ class UserService {
         this._token = new Token();
     }
 
+    async findByEmail(email) {
+        let user = await this._repository.findByEmail(email);
+        const isNull = user.length == 0;
+        if (!isNull) {
+            user = user[0];
+        }
+        return user;
+    }
+
     async authenticate(credentails) {
         if (!credentails.email || !credentails.password) {
             throw new SecurityException(null, "Datas invalid!");
         }
 
-        let user = await this._repository.findByEmail(credentails.email);
-        user = user[0];
+        let user = await this.findByEmail(credentails.email);
         const isPaswordValid = await bcrypt.compare(credentails.password, user.password);
 
         if (!isPaswordValid) {

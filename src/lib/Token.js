@@ -20,6 +20,16 @@ class Token {
         return this;
     }
 
+    getValueInPayload(key, token) {
+        token = token.replace(app.PARAM_PREFIX_TOKEN, '');
+        const headerPayloadSignature = token.split(".");
+        let payload = headerPayloadSignature[1];
+        const buffer = new Buffer(payload, "base64");
+        payload = buffer.toString("utf-8");
+        payload = JSON.parse(payload);
+        return payload[key];
+    }
+
     async build() {
         return app.PARAM_PREFIX_TOKEN + jwt.sign(
             {...this._payload, exp: this._timeExpired() },
