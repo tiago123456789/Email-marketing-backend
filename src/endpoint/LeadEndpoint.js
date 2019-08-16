@@ -11,6 +11,10 @@ class LeadEndpoint {
         this.remove = this.remove.bind(this);
     }
 
+    subscribe() {
+        
+    }
+
     async create(request, response, next) {
         try {
             const newRegister = request.body;

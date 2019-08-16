@@ -13,7 +13,6 @@ const leadSchema = new Schema({
     ],
     lists: [
         {
-            title: String,
             type: Schema.Types.ObjectId, 
             ref: "lists"
         }
