@@ -10,7 +10,7 @@ const campaignSchema = new Schema({
     start: { type: Date, required: [ true, "The field start is required."]},
     opens: { type: Number, default: 0 },
     clicks: { type: Number, default: 0 },
-    unsubscribe: { type: Numer, default: 0 },
+    unsubscribe: { type: Number, default: 0 },
     bounces: { type: Number, default: 0 },
     lists: [
         {

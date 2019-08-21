@@ -5,6 +5,7 @@ const getMessageErrorValidation = (error) => {
 }
 
 module.exports = (error, request, response, next) => {
+    console.log(error);
     switch(error.name) {
         case "UNAUTHORIZATED":
             return response.status(401).json({ msg: error.message });

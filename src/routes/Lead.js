@@ -1,5 +1,5 @@
 const express = require("express");
-const LeadEndpoint = require("../endpoint/leadEndpoint");
+const LeadEndpoint = require("../endpoint/LeadEndpoint");
 
 const leadEndpoint = new LeadEndpoint();
 const router = express.Router();

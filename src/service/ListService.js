@@ -7,6 +7,10 @@ class ListService {
         this._repository = new ListRepository();
     }
 
+    findByTitle(title) {
+        return this._repository.findByTitle(title);
+    }
+
     findAll() {
         return this._repository.findAll();
     }

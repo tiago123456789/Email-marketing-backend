@@ -7,6 +7,12 @@ class LeadRepository extends Repository {
         super(leadModel);
     }
 
+    findByEmail(email) {
+        return this.getModel().findOne({ email: email });
+    }
+
+    
+
 }
 
 module.exports = LeadRepository;

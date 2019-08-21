@@ -19,7 +19,7 @@ const leadSchema = new Schema({
     ],
     actions: [
         {
-            typed: Schema.Types.ObjectId,
+            type: Schema.Types.ObjectId,
             ref: "lists",
             action: [
                 {  
@@ -32,4 +32,4 @@ const leadSchema = new Schema({
     ]
 });
 
-module.exports = mongoose.model("lead", leadchema);
+module.exports = mongoose.model("lead", leadSchema);

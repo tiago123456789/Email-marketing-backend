@@ -6,11 +6,11 @@ const router = express.Router();
 
 module.exports = () => {
 
-    router.get("/", campaignEndpoint.findAll);
-    router.get("/:id", campaignEndpoint.findById);
-    router.put("/:id", campaignEndpoint.update);
-    router.delete("/:id", campaignEndpoint.remove);
-    router.post("/", campaignEndpoint.create);
+    router.get("/", campaingEndpoint.findAll);
+    router.get("/:id", campaingEndpoint.findById);
+    router.put("/:id", campaingEndpoint.update);
+    router.delete("/:id", campaingEndpoint.remove);
+    router.post("/", campaingEndpoint.create);
     
     return router;
 }

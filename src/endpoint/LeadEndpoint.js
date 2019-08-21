@@ -1,18 +1,30 @@
-const LeadService = require("../service/LeadService");
+const { check } = require("express-validator");
 
-class LeadEndpoint {
+const LeadService = require("../service/LeadService");
+const Endpoint = require("./Endpoint");
+
+class LeadEndpoint extends Endpoint {
 
     constructor() {
+        super();
         this._service = new LeadService();
         this.create = this.create.bind(this);
         this.findAll = this.findAll.bind(this);
         this.findById = this.findById.bind(this);
         this.update = this.update.bind(this);
         this.remove = this.remove.bind(this);
+        this.subscribe = this.subscribe.bind(this);
     }
 
-    subscribe() {
-        
+    async subscribe(request, response, next) {
+        try {
+            this.isDataInvalid(request, response);
+            const datas = request.body;
+            await this._service.subscribe(datas);
+            return response.sendStatus(201);
+        } catch(error) {
+            next(error);
+        }
     }
 
     async create(request, response, next) {
@@ -64,6 +76,13 @@ class LeadEndpoint {
         } catch(error) {
             next(error);
         }
+    }
+
+    validations() {
+        return [
+            check("email", "The field email is required.").isEmail(),
+            check("list", "The field list is required.").isLength({ min: 3 })
+        ]
     }
     
 }

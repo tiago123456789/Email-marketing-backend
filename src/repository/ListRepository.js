@@ -7,6 +7,10 @@ class ListRepository extends Repository {
         super(listModel);
     }
 
+    findByTitle(title) {
+        return this.getModel().findOne({ title });
+    }
+
 }
 
 module.exports = ListRepository;
