@@ -19,11 +19,13 @@ const leadSchema = new Schema({
     ],
     actions: [
         {
-            type: Schema.Types.ObjectId,
-            ref: "lists",
+            campaign: {
+                type: Schema.Types.ObjectId,
+                ref: "campaign",
+            },
             action: [
                 {  
-                    type: String,
+                    typed: String,
                     link: String,
                     date: Date
                 }

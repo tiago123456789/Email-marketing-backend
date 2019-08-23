@@ -4,10 +4,11 @@ const listRoutes = require("./List");
 const leadRoutes = require("./Lead");
 const campaignRoutes = require("./Campaing");
 
+const TrackEndpoint = require("../endpoint/TrackEndpoint");
 const LeadEndpoint = require("../endpoint/LeadEndpoint");
 const auth = require("../middleware/AuthMiddleware");
 const handlerException = require("../middleware/HandlerExceptionMiddleware");
-
+const trackEnpoint = new TrackEndpoint();
 const leadEndpoint = new LeadEndpoint();
 
 module.exports = (app) => {
@@ -18,6 +19,8 @@ module.exports = (app) => {
     app.use("/campaigns", auth.hasPermission, campaignRoutes());   
     
     app.post("/subscribes", leadEndpoint.validations(), leadEndpoint.subscribe);
+    app.get("/tracks/open/campaign/:idCampaign/lead/:idLead", trackEnpoint.emailOpened);
+    app.get("/tracks/click/campaign/:idCampaign/lead/:idLead", trackEnpoint.linkEmailClicked);
     
     app.use("/auth", authRoutes());
     
