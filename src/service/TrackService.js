@@ -19,7 +19,13 @@ class TrackService {
 
     async _catchAction(idCampaign, idLead, action, link) {
         const campaign = await this._campaignService.findById(idCampaign);
-        campaign.opens += 1;
+
+        if (action == "open") {
+            campaign.opens += 1;
+        } else if (action == "click") {
+            campaign.clicks += 1
+        }
+
         campaign.save();
 
         const lead = await this._leadService.findById(idLead);
@@ -31,6 +37,7 @@ class TrackService {
                 date: Date.now()
             }
         });
+        lead.save();
     }
 }
 

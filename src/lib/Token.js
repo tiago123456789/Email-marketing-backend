@@ -31,7 +31,7 @@ class Token {
     }
 
     async build() {
-        return app.PARAM_PREFIX_TOKEN + jwt.sign(
+        return jwt.sign(
             {...this._payload, exp: this._timeExpired() },
             this._secret
         );

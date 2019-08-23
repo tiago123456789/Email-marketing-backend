@@ -13,7 +13,7 @@ class TrackEndpoint {
             const idCampaign = request.params.idCampaign;
             const idLead = request.params.idLead;
             await this._trackService.emailOpened(idCampaign, idLead);
-            const buffer = Buffer.from(35);
+            const buffer = new Buffer(35);
 
             response.writeHead(200, { "Content-Type": "image/gif" });
             response.end(buffer, "binary");
@@ -25,7 +25,7 @@ class TrackEndpoint {
     async linkEmailClicked(request, response, next) {
         try {
             const link = request.query.link;
-            if (link) {
+            if (!link) {
                 response.status(404).json({ msg: "Address url not found!" });
             }
 
@@ -33,8 +33,8 @@ class TrackEndpoint {
             const idLead = request.params.idLead;
 
             await this._trackService.linkEmailClicked(idCampaign, idLead, link);
-            res.writeHead(302, { 'Location': link });
-            res.end();
+            response.set({ 'Location': link });
+            response.sendStatus(302);
         } catch(error) {
             next(error);
         }
