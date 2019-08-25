@@ -14,10 +14,8 @@ services:
       - "./node_modules/:/home/app/node_modules/"
     ports: 
       - 3000:3000
-    environment:
-      - PORT=3000
-      - URL_DB_CONNECTION=mongodb://mongo:27017/email_marketing
-      - TOKEN_SECRET=123654789
+    env_file:
+      - ./.env
     depends_on:
       - mongo
     command: npm run start:dev
