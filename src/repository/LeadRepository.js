@@ -11,8 +11,9 @@ class LeadRepository extends Repository {
         return this.getModel().findOne({ email: email });
     }
 
-    
-
+    findByLists(lists) {
+        return this.getModel().find({ lists: { $in: lists }});
+    }
 }
 
 module.exports = LeadRepository;

@@ -7,6 +7,10 @@ class CampaignRepository extends Repository {
         super(campaignModel);
     }
 
+    findByStatusNullAndStartLessThanNow() {
+        return this.getModel().find({ status: null , start: { $lt: Date.now() }});
+    }
+
 }
 
 module.exports = CampaignRepository;

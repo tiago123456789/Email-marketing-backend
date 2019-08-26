@@ -36,15 +36,4 @@ class Email {
     }
 }
 
-let body = "<strong>Test service sendgrid trigger email</strong><a href=\"http://youtube.com.br\">link<a>";
-body = track.addLinkClickedLinkEmail(body, 1, 1);
-body = track.addLinkOpenedEmail(body, 1, 1);
-console.log(body);
-new Email()
-    .withFrom("tiagorosadacost@gmail.com")
-    .withSubject("Test service sendgrid trigger email")
-    .withHtml(body)
-    .send()
-    .then(() => console.log("Send email success!"));
-
-// module.exports = Email;
+module.exports = Email;

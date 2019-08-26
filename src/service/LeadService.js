@@ -9,6 +9,10 @@ class LeadService {
         this._listService = new ListService();
     }
 
+    findByLists(lists) {
+        return this._repository.findByLists(lists);
+    }
+
     async subscribe(datas) {
         let list = await this._listService.findByTitle(datas.list);
         const isNullList = list == null || list.length == 0;

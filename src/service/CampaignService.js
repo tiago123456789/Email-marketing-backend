@@ -7,6 +7,10 @@ class CampaignService {
         this._repository = new CampaignRepository();
     }
 
+    findByStatusNullAndStartLessThanNow() {
+        return this._repository.findByStatusNullAndStartLessThanNow();
+    }
+
     findAll() {
         return this._repository.findAll();
     }

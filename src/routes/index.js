@@ -23,7 +23,7 @@ module.exports = (app) => {
     app.get("/tracks/click/campaign/:idCampaign/lead/:idLead", trackEnpoint.linkEmailClicked);
     
     app.use("/auth", authRoutes());
-    
+
     // Handler exception trigger to the application.
     app.use(handlerException);
 }
