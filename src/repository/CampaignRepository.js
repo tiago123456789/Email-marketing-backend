@@ -8,7 +8,7 @@ class CampaignRepository extends Repository {
     }
 
     findByStatusNullAndStartLessThanNow() {
-        return this.getModel().find({ status: null , start: { $lt: Date.now() }});
+        return this.getModel().find({ status: null , start: { $lt: new Date() }});
     }
 
 }

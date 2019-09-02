@@ -9,6 +9,7 @@ class Email {
         this._from = null;
         this._subject = null;
         this._html = null;
+        this._text = "";
     }
 
     withFrom(from) {
@@ -27,12 +28,13 @@ class Email {
     }
 
     send() {
-        return sendGridMail.send({
+        const msg = {
             to: this._to,
             from: this._from,
             subject: this._subject,
             html: this._html
-        });
+        };
+        return sendGridMail.send(msg);
     }
 }
 
