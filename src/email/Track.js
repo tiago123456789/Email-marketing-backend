@@ -7,9 +7,9 @@ module.exports = {
     },
 
     addLinkClickedLinkEmail(body, campaign, lead) {
-        const regex = /<a href="(.*?)"/g;
-        const linkTrack = `${process.env.APP_URL}/tracks/click/campaign/${campaign}/lead/${lead}`;
-        body = body.replace(regex, `<a href=\"${linkTrack}?link=$1\"`);
+        const regex = /<a href="(.*?)"|<a href='(.*?)'/g;
+        const linkTrack = `http://${process.env.APP_URL}/tracks/click/campaign/${campaign}/lead/${lead}/`;
+        body = body.replace(regex, `<a href=\"${linkTrack}\?address=$1$2\"`);
         return body;
     
     }

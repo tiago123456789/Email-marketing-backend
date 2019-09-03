@@ -24,7 +24,7 @@ class TrackEndpoint {
 
     async linkEmailClicked(request, response, next) {
         try {
-            const link = request.query.link;
+            const link = request.query.address;
             if (!link) {
                 response.status(404).json({ msg: "Address url not found!" });
             }

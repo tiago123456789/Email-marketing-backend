@@ -36,11 +36,15 @@ module.exports = (app) => {
                 let body = campaign.body || "";
                 body = track.addLinkClickedLinkEmail(body, campaign._id, lead._id);
                 body = track.addLinkOpenedEmail(body, campaign._id, lead._id);
+                console.log(body);
                 await new Email()
                             .withFrom(lead.email)
                             .withSubject(campaign.title)
                             .withHtml(body).send();
             }
+
+            campaign.status = "sended";
+            campaign.save();
         }
         response.sendStatus(200);
     });
