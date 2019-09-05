@@ -24,7 +24,7 @@ class TrackEndpoint {
 
     async linkEmailClicked(request, response, next) {
         try {
-            const link = request.query.address;
+            const link = request.params.link;
             if (!link) {
                 response.status(404).json({ msg: "Address url not found!" });
             }
@@ -32,9 +32,17 @@ class TrackEndpoint {
             const idCampaign = request.params.idCampaign;
             const idLead = request.params.idLead;
 
-            await this._trackService.linkEmailClicked(idCampaign, idLead, link);
-            response.set({ 'Location': link });
-            response.sendStatus(302);
+            this._trackService.
+                linkEmailClicked(idCampaign, idLead, link)
+                .then(() => {
+                    console.log(link);
+                    
+                });
+                response.writeHead(302, {
+                    'Location': link 
+                })
+                response.end();
+            
         } catch(error) {
             next(error);
         }

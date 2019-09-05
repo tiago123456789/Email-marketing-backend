@@ -6,6 +6,7 @@ class TrackService {
     constructor() {
         this._campaignService = new CampaignService();
         this._leadService = new LeadService();
+        this._counter = 1;
     }
 
     emailOpened(idCampaign, idLead) {
@@ -13,13 +14,13 @@ class TrackService {
     }
 
 
-    linkEmailClicked(idCampaign, idLead, link) {
+    async linkEmailClicked(idCampaign, idLead, link) {
         return this._catchAction(idCampaign, idLead, "click", link);
     }
 
     async _catchAction(idCampaign, idLead, action, link) {
+        console.log(this._counter);
         const campaign = await this._campaignService.findById(idCampaign);
-
         if (action == "open") {
             campaign.opens += 1;
         } else if (action == "click") {
@@ -37,7 +38,7 @@ class TrackService {
                 date: Date.now()
             }
         });
-        lead.save();
+        return lead.save();
     }
 }
 

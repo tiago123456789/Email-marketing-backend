@@ -19,17 +19,6 @@ services:
     depends_on:
       - mongo
     command: npm run start:dev
-  service_email:
-    image: "node:8.6"
-    working_dir: "/home/app"
-    volumes:
-      - ".:/home/app/"
-      - "./node_modules/:/home/app/node_modules/"
-    env_file:
-      - ./.env
-    depends_on:
-      - mongo
-    command: nodejs ./src/task/SenderEmailCampaignTask.js
-
+  
   
     

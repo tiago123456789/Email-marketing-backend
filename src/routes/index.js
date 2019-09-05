@@ -27,7 +27,7 @@ module.exports = (app) => {
 
     app.post("/subscribes", leadEndpoint.validations(), leadEndpoint.subscribe);
     app.get("/tracks/open/campaign/:idCampaign/lead/:idLead", trackEnpoint.emailOpened);
-    app.get("/tracks/click/campaign/:idCampaign/lead/:idLead", trackEnpoint.linkEmailClicked);
+    app.get("/tracks/click/campaign/:idCampaign/lead/:idLead/link/:link", trackEnpoint.linkEmailClicked);
     app.get("/teste", async (request, response) => {
         const campaigns = await campaignService.findByStatusNullAndStartLessThanNow();
         for (let campaign of campaigns) {
